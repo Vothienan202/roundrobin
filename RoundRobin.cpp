@@ -22,22 +22,14 @@ bool comparatorAT(struct process_struct a, struct process_struct b)
     return x < y;
 }
 
-bool comparatorPID(struct process_struct a, struct process_struct b)
-{
-    int x = a.pid;
-    int y = b.pid;
-    return x < y;
-}
-
 int main()
 {
 
     int n, index;
-    int cpu_utilization;
     queue<int> q;
     bool visited[100] = { false }, is_first_process = true;
-    int current_time = 0, max_completion_time;
-    int completed = 0, tq, total_idle_time = 0, length_cycle;
+    int current_time = 0;
+    int completed = 0, tq;
     cout << "Nhap tong so tien trinh: ";
     cin >> n;
     float sum_tat = 0, sum_wt = 0, sum_rt = 0;
@@ -130,16 +122,6 @@ int main()
             }
         }
     }
-
-   
-    max_completion_time = INT_MIN;
-
-    for (int i = 0; i < n; i++)
-        max_completion_time = max(max_completion_time, ps[i].ct);
-
-    length_cycle = max_completion_time - ps[0].at;   
-   
-    sort(ps, ps + n, comparatorPID);
 
     //Output
     // chu thich: 
